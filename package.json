@@ -28,7 +28,7 @@
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
     "expo-linear-gradient": "~8.2.1",
-    "undefined": "expo-font\\"
+    "expo-font": "~8.2.1"
   },
   "devDependencies": {
     "@babel/core": "^7.8.6",
