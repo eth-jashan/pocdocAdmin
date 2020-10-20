@@ -1,21 +1,45 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React,{useState} from 'react';
+import FlowSwitch from './navigator/appNav'
+import {AppLoading} from 'expo'
+import * as Font from 'expo-font'
+import {createStore, applyMiddleware, combineReducers} from 'redux'
+import {Provider} from 'react-redux'
+import ReduxThunk from 'redux-thunk'
+import AuthReducer from './store/reducer/auth'
+import PackageReducer from './store/reducer/testPackage'
+import TestReducer from './store/reducer/test'
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+const fontLoading = () =>{
+  return Font.loadAsync({
+    'regular':require('./assets/font/Roboto-Regular.ttf'),
+    'bold':require('./assets/font/Roboto-Bold.ttf'),
+    'extra':require('./assets/font/Roboto-Black.ttf'),
+    'light':require('./assets/font/Roboto-Light.ttf'),
+    'semi':require('./assets/font/Roboto-Medium.ttf'),
+    'logo': require('./assets/font/Cocon-Regular-Font.otf'),
+    'headRegular': require('./assets/font/BalsamiqSans-Regular.ttf'),
+    'headBold': require('./assets/font/BalsamiqSans-Bold.ttf')
+  })
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+const rootReducer = combineReducers({
+  auth : AuthReducer,
+  package : PackageReducer,
+  test : TestReducer
+})
+const store = createStore(rootReducer,applyMiddleware(ReduxThunk))
+
+export default function App() {
+  
+  const [fontLoad, setFontLoad] = useState(false)
+
+  if(!fontLoad){
+    return <AppLoading
+      startAsync ={fontLoading}
+      onFinish = {() => setFontLoad(true)}
+      />
+    }
+    
+  return<Provider store={store}><FlowSwitch/></Provider>
+}
+
