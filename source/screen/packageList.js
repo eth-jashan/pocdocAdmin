@@ -51,6 +51,7 @@ const TestList = ({navigation}) => {
         <FlatList
             style={{alignSelf:'center'}}
             data = {listPackage}
+            keyExtractor = {x=>x.id}
             renderItem={({item}) => {
                 return<SinglePackage
                     result = {item}

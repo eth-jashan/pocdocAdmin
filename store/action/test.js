@@ -30,6 +30,7 @@ export const fetchPackage = () => {
     return async (dispatch, getState) => {
         
         const token = getState().auth.token
+        const userId = getState().auth.userId
         const response = await fetch(`https://pocdocadmin.firebaseio.com/tests.json?auth=${token}`)
         const resData = await response.json()
         const list = []

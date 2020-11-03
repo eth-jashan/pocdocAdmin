@@ -9,9 +9,13 @@ import TestForm from '../source/screen/packageForm';
 import AuthScreen from '../source/screen/authScreen';
 
 import { Entypo } from '@expo/vector-icons';
-import {Foundation} from '@expo/vector-icons'
+import {Foundation} from '@expo/vector-icons';
+import { MaterialIcons } from '@expo/vector-icons';
 import PackageList from '../source/screen/testList';
 import PackageForm from '../source/screen/testForm';
+import ProfileScreen from '../source/screen/profileScreen';
+import CreationProfile from '../source/screen/creationProfile';
+import EditProfile from '../source/screen/editProfile';
 
 const HomeStack = createStackNavigator({
     Home : HomeScreen
@@ -22,6 +26,12 @@ const ListStack = createStackNavigator({
     Form : TestForm,
     Package : PackageList,
     TestForm : PackageForm
+})
+
+const ProfileStack = createStackNavigator({
+    Profile : ProfileScreen,
+    Create : CreationProfile,
+    Edit : EditProfile
 })
 
 const BottomTab = createMaterialBottomTabNavigator({
@@ -36,6 +46,12 @@ const BottomTab = createMaterialBottomTabNavigator({
             return <Entypo name="list" size={25} color={tabInfo.tintColor} />
         },
         tabBarLabel : 'Test'
+    }},
+    Profile:{screen:ProfileStack, navigationOptions:{
+        tabBarIcon:(tabInfo)=>{
+            return <MaterialIcons name="account-circle" size={24} color={tabInfo.tintColor} />
+        },
+        tabBarLabel: 'Profile'
     }}
 },{
     shifting:true,

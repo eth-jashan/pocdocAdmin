@@ -8,6 +8,7 @@ import ReduxThunk from 'redux-thunk'
 import AuthReducer from './store/reducer/auth'
 import PackageReducer from './store/reducer/testPackage'
 import TestReducer from './store/reducer/test'
+import ProfileReducer from './store/reducer/profile'
 
 const fontLoading = () =>{
   return Font.loadAsync({
@@ -25,7 +26,8 @@ const fontLoading = () =>{
 const rootReducer = combineReducers({
   auth : AuthReducer,
   package : PackageReducer,
-  test : TestReducer
+  test : TestReducer,
+  profile : ProfileReducer
 })
 const store = createStore(rootReducer,applyMiddleware(ReduxThunk))
 

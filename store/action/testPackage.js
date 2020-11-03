@@ -15,17 +15,18 @@ export const createPAckage = (name, description, instruction, price) => {
                 description : description,
                 instruction : instruction,
                 price:price,
-                userid : userId
+                receiverId : userId
             })
         })
         const resData = await response.json()
-        dispatch({type:CREATE_PACKAGE, testData:{id:resData.name, name:name, description : description, instruction : instruction, price:price, userid : userId}})
+        dispatch({type:CREATE_PACKAGE, testData:{id:resData.name, name:name, description : description, instruction : instruction, price:price, receiverId : userId}})
     }
 }
 
 export const fetchPackage = () => {
     return async (dispatch, getState) => {
         
+        const userId = getState().auth.userId
         const token = getState().auth.token
         const response = await fetch(`https://pocdocadmin.firebaseio.com/packages.json?auth=${token}`)
         const resData = await response.json()
@@ -33,6 +34,6 @@ export const fetchPackage = () => {
         for (const key in resData){
             list.push(new TestPackage(key, resData[key].name, resData[key].description, resData[key].instruction, resData[key].price, resData[key].receiverId))
         }
-        dispatch({type:FETCH_PACKAGE, list:list})
+        dispatch({type:FETCH_PACKAGE, list:list.filter(x=>x.receiverId === userId)})
     }
 }
