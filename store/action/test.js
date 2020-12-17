@@ -36,8 +36,10 @@ export const fetchPackage = () => {
         const list = []
         
         for (const key in resData){
-            list.push(new Test(key, resData[key].name, resData[key].description, resData[key].price,resData[key].packageId, resData[key].userId))
+            list.push(new Test(key, resData[key].name, resData[key].description, resData[key].price,resData[key].packageId, resData[key].userid))
         }
+
+        console.log("TEST::::", list)
         dispatch({type:FETCH_TEST, list:list.filter(x=>x.userId === userId)})
     }
 }

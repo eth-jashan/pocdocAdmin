@@ -37,6 +37,7 @@ const PackageList = ({navigation}) => {
     const listPackage1 = useSelector(x=>x.test.testList)
     console.log("Package Id" , packageId)
     const listPackage = listPackage1.filter(x=>x.packageId === packageId)    
+    console.log("TEST :", listPackage)
 
     if(isLoad){
         return<View style={{height:Dimensions.get('screen').height, width:Dimensions.get('screen').width, alignItems:'center', justifyContent:'center'}}>

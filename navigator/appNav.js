@@ -16,9 +16,11 @@ import PackageForm from '../source/screen/testForm';
 import ProfileScreen from '../source/screen/profileScreen';
 import CreationProfile from '../source/screen/creationProfile';
 import EditProfile from '../source/screen/editProfile';
+import OrderScreen from '../source/screen/homeOrder';
 
 const HomeStack = createStackNavigator({
-    Home : HomeScreen
+    Home : HomeScreen,
+    Order : OrderScreen
 })
 
 const ListStack = createStackNavigator({
