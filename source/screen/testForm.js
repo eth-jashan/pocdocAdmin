@@ -25,7 +25,7 @@ const PackageForm = ({navigation}) => {
     return(
         <SafeAreaView>
         <ScrollView>
-        <Text style={{fontFamily:'regular', fontSize:23, alignSelf:'center'}}>Package Form</Text>
+        <Text style={{fontFamily:'regular', fontSize:23, alignSelf:'center'}}>Test Form</Text>
         <View style={{marginTop:10, alignItems:'center'}}>
                 <TextInput
                     mode = 'outlined'
